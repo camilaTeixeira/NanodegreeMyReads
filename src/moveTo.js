@@ -5,7 +5,7 @@ class MoveTo extends Component {
   static propTypes = {
     optionsMove: PropTypes.array.isRequired,
     shelf: PropTypes.string.isRequired,     
-    book: PropTypes.object.isRequire,
+    book: PropTypes.object.isRequired,
     onUpdateBook: PropTypes.func.isRequired
   };
   render() {
