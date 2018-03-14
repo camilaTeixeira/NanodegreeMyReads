@@ -1,17 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MoveTo from './moveTo';
 
 class Book extends Component {
-    
   static propTypes = {
     books: PropTypes.array.isRequired,
     optionsMove: PropTypes.array.isRequired,
- 
   };
   render() {
-    const { books, optionsMove,onUpdateBook } = this.props;
-
+    const { books, optionsMove, onUpdateBook } = this.props;
     return (
       <div className="bookshelf-books">
         <ol className="books-grid">
@@ -24,10 +21,15 @@ class Book extends Component {
                     style={{
                       width: 128,
                       height: 193,
-                      backgroundImage: `url(${book.imageLinks.thumbnail})`
+                      backgroundImage: `url(${book.imageLinks.thumbnail})`,
                     }}
                   />
-                  <MoveTo optionsMove={optionsMove}  shelf={book.shelf} onUpdateBook={onUpdateBook} />
+                  <MoveTo
+                    optionsMove={optionsMove}
+                    shelf={book.shelf}
+                    onUpdateBook={onUpdateBook}
+                    book={book}
+                  />
                 </div>
               </div>
             </li>

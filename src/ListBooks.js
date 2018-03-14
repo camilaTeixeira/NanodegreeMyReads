@@ -1,34 +1,33 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import sortBy from "sort-by";
-import Book from "./book";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import sortBy from 'sort-by';
+import Book from './book';
 
 class ListBooks extends Component {
-  static propTypes = { 
+  static propTypes = {
     books: PropTypes.array.isRequired,
     optionsMove: PropTypes.array.isRequired,
-    onUpdateBook: PropTypes.func
+    onUpdateBook: PropTypes.func,
   }
   state = {
-    query: ""
+    query: '',
   };
-  updateQuery = query => {
+  updateQuery = (query) => {
     this.setState({ query: query.trim() });
   };
   clearQuery = () => {
-    this.setState({ query: "" });
+    this.setState({ query: '' });
   };
 
   render() {
-    const { books, optionsMove,onUpdateBook } = this.props;
+    const { books, optionsMove, onUpdateBook } = this.props;
     const { query } = this.state;
-    let readingBooks, wantRead, read;
 
-    readingBooks = books.filter(book => book.shelf === "currentlyReading");
-    wantRead = books.filter(book =>  book.shelf === "wantToRead");
-    read = books.filter(book => book.shelf === "read");
-    readingBooks.sort(sortBy("title"));
+    const readingBooks = books.filter(book => book.shelf === 'currentlyReading');
+    const wantRead = books.filter(book => book.shelf === 'wantToRead');
+    const read = books.filter(book => book.shelf === 'read');
+    readingBooks.sort(sortBy('title'));
 
     return (
       <div className="list-books">
@@ -39,7 +38,7 @@ class ListBooks extends Component {
           <div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
-              <Book books={readingBooks} optionsMove={optionsMove}  onUpdateBook={onUpdateBook} />
+              <Book books={readingBooks} optionsMove={optionsMove} onUpdateBook={onUpdateBook} />
             </div>
           </div>
           <div>
