@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-//import SearchBook from './SearchBook'
+import SearchBook from './SearchBook'
 import ListBooks from './ListBooks'
 
 class BooksApp extends Component {
@@ -11,7 +11,6 @@ class BooksApp extends Component {
  state = {
    books: [],
     optionsMove: [
-    { value: 'Move to...', option: 'none' },
     { value: 'currentlyReading', option: 'Currently Reading' },
     { value: 'wantToRead', option: 'Want to Read' },
     { value: 'read', option: 'Read' },
@@ -27,13 +26,23 @@ class BooksApp extends Component {
     })
   }
   
+  
+  changeShelf = (book,shelf) => {
+   
+    BooksAPI.update(book,shelf)
+  }
+
+
   render() {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <ListBooks books={this.state.books} />
+          <ListBooks books={this.state.books} optionsMove={this.state.optionsMove} onUpdateBook={this.changeShelf} />
         
       )}/>       
+       <Route  path="/search" render={({  history}) => (
+         <SearchBook /> )}/>
+      
       </div>
     )
   }

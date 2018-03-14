@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import * as BooksAPI from "./BooksAPI";
 import PropTypes from "prop-types";
-import escapeRegExp from "escape-string-regexp";
+import { Link } from "react-router-dom";
 import sortBy from "sort-by";
-import MoveTo from './moveTo'
+import Book from "./book";
 
 class ListBooks extends Component {
-  static propTypes = {
+  static propTypes = { 
     books: PropTypes.array.isRequired,
-    onDeleteBook: PropTypes.func
-  };
+    optionsMove: PropTypes.array.isRequired,
+    onUpdateBook: PropTypes.func
+  }
   state = {
     query: ""
   };
@@ -21,13 +21,12 @@ class ListBooks extends Component {
   };
 
   render() {
-    const { books, optionsMove, onDeleteContact } = this.props;
+    const { books, optionsMove,onUpdateBook } = this.props;
     const { query } = this.state;
     let readingBooks, wantRead, read;
 
-    const match = new RegExp(escapeRegExp(query), "i");
     readingBooks = books.filter(book => book.shelf === "currentlyReading");
-    wantRead = books.filter(book => book.shelf === "wantToRead");
+    wantRead = books.filter(book =>  book.shelf === "wantToRead");
     read = books.filter(book => book.shelf === "read");
     readingBooks.sort(sortBy("title"));
 
@@ -40,91 +39,24 @@ class ListBooks extends Component {
           <div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid">
-                  {readingBooks.map((book, index) => (
-                    <li key={book.index}>
-                      <div className="book">
-                        <div className="book-top">
-                          <div
-                            className="book-cover"
-                            style={{
-                              width: 128,
-                              height: 193,
-                              backgroundImage: `url(${
-                                book.imageLinks.thumbnail
-                              })`
-                            }}
-                          />
-                       <MoveTo optionsMove={optionsMove} />
-                    
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              </div>
+              <Book books={readingBooks} optionsMove={optionsMove}  onUpdateBook={onUpdateBook} />
             </div>
           </div>
           <div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">Want to read</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid">
-                  {wantRead.map((book, index) => (
-                    <li key={book.index}>
-                      <div className="book">
-                        <div className="book-top">
-                          <div
-                            className="book-cover"
-                            style={{
-                              width: 128,
-                              height: 193,
-                              backgroundImage: `url(${
-                                book.imageLinks.thumbnail
-                              })`
-                            }}
-                          />
-                          <MoveTo />
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              </div>
+              <Book books={wantRead} optionsMove={optionsMove} onUpdateBook={onUpdateBook} />
             </div>
           </div>
           <div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">Read</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid">
-                  {read.map((book, index) => (
-                    <li key={book.index}>
-                      <div className="book">
-                        <div className="book-top">
-                          <div
-                            className="book-cover"
-                            style={{
-                              width: 128,
-                              height: 193,
-                              backgroundImage: `url(${
-                                book.imageLinks.thumbnail
-                              })`
-                            }}
-                          />
-                           <MoveTo />
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              </div>
+              <Book books={read} optionsMove={optionsMove} onUpdateBook={onUpdateBook} />
             </div>
           </div>
           <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-            </div>
+            <Link to="/search">Add a book</Link>
+          </div>
         </div>
       </div>
     );
