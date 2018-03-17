@@ -8,7 +8,7 @@ class ListBooks extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
     optionsMove: PropTypes.array.isRequired,
-    onUpdateBook: PropTypes.func,
+    onUpdateBook: PropTypes.func.isRequired,
   }
   state = {
     query: '',

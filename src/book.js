@@ -11,6 +11,7 @@ class Book extends Component {
     const { books, optionsMove, onUpdateBook } = this.props;
     return (
       <div className="bookshelf-books">
+    
         <ol className="books-grid">
           {books.map((book, index) => (
             <li key={index}>

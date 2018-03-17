@@ -6,28 +6,28 @@ import SearchBook from './SearchBook';
 import ListBooks from './ListBooks';
 
 class BooksApp extends Component {
- state = {
-   books: [],
-   optionsMove: [
-     { value: 'currentlyReading', option: 'Currently Reading' },
-     { value: 'wantToRead', option: 'Want to Read' },
-     { value: 'read', option: 'Read' },
-     { value: 'none', option: 'None' },
-   ],
- }
+  state = {
 
-
- componentDidMount() {
-   BooksAPI.getAll().then((books) => {
-     this.setState({ books });
-   });
- }
-
-
-  changeShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf);
+    books: [],
+    optionsMove: [
+      { value: 'currentlyReading', option: 'Currently Reading' },
+      { value: 'wantToRead', option: 'Want to Read' },
+      { value: 'read', option: 'Read' },
+      { value: 'none', option: 'None' },
+    ],
+  };
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books });
+    });
   }
-
+  changeShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then((bookNovo) => {
+      this.setState(state => ({
+        books: state.books.concat([bookNovo]),
+      }));
+    });
+  };
 
   render() {
     return (
@@ -36,16 +36,17 @@ class BooksApp extends Component {
           exact
           path="/"
           render={() => (
-            <ListBooks books={this.state.books} optionsMove={this.state.optionsMove} onUpdateBook={this.changeShelf} />)}
+            <ListBooks
+              books={this.state.books}
+              optionsMove={this.state.optionsMove}
+              onUpdateBook={this.changeShelf}
+            />
+          )}
         />
-        <Route
-          path="/search"
-          render={({ history }) => (
-            <SearchBook />)}
-        />
+        <Route path="/search" render={() => <SearchBook />} />
       </div>
-    )
+    );
   }
 }
 
-export default BooksApp
+export default BooksApp;
