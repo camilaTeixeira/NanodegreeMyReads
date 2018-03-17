@@ -6,11 +6,7 @@ import Book from './book';
 
 
 class SearchBook extends Component {
-  static propTypes = {
-    books: PropTypes.array.isRequired,
-    optionsMove: PropTypes.array.isRequired,
-    onUpdateBook: PropTypes.func.isRequired,
-  }
+
   state = {
     query: '',
     books: [],
@@ -22,7 +18,6 @@ class SearchBook extends Component {
     ],
   };
   SearchBook = (query) => {
-    console.log(query);
     this.setState({ query: query.trim() });
     BooksAPI.search(query).then((books) => {
       this.setState({ books });
@@ -44,7 +39,7 @@ class SearchBook extends Component {
         </div>
       <div className="search-books-results">
         {this.state.books.length !== 0 && (
-        <Book books={this.state.books} optionsMove={this.state.optionsMove} onUpdateBook={this.state.onUpdateBook} />
+        <Book books={this.state.books}  optionsMove={this.state.optionsMove} onUpdateBook={this.state.onUpdateBook} />
       )}
       </div>
     </div>

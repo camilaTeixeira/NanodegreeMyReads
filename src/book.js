@@ -11,7 +11,7 @@ class Book extends Component {
     const { books, optionsMove, onUpdateBook } = this.props;
     return (
       <div className="bookshelf-books">
-    
+
         <ol className="books-grid">
           {books.map((book, index) => (
             <li key={index}>
@@ -25,12 +25,14 @@ class Book extends Component {
                       backgroundImage: `url(${book.imageLinks.thumbnail})`,
                     }}
                   />
+                 
                   <MoveTo
                     optionsMove={optionsMove}
                     shelf={book.shelf}
                     onUpdateBook={onUpdateBook}
                     book={book}
                   />
+                   {book.shelf}
                 </div>
               </div>
             </li>
