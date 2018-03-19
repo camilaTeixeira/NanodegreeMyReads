@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^8.2.2",
     "escape-string-regexp": "^1.0.5",
     "prettier": "^1.11.1",
     "prop-types": "^15.6.1",
@@ -13,7 +13,8 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
     "register-service-worker": "^1.1.1",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "styled-components": "^3.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -24,10 +25,12 @@
     "lintfix": "eslint '**/*.js' --fix"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
+    "eslint": "^4.19.0",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0"
   }
 }
