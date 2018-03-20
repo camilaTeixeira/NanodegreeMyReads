@@ -1,31 +1,25 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import * as BooksAPI from './BooksAPI';
 import './App.css';
 import SearchBook from './SearchBook';
-import ListBooks from './ListBooks';
+import MyReadsPage from './Pages/MyReads/';
+import { getAll as getAllShelves } from './data/Shelves';
+import { getAll as getAllBooks, updateShelf } from './data/Books';
 
 class BooksApp extends Component {
   state = {
-
     books: [],
-    optionsMove: [
-      { value: 'currentlyReading', option: 'Currently Reading' },
-      { value: 'wantToRead', option: 'Want to Read' },
-      { value: 'read', option: 'Read' },
-      { value: 'none', option: 'None' },
-    ],
+    shelves: [],
+    loading: true,
   };
   componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState({ books });
+    Promise.all([getAllBooks(), getAllShelves()]).then(([books, shelves]) => {
+      this.setState({ books, shelves, loading: false });
     });
   }
   changeShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then((bookNovo) => {
-      this.setState(state => ({
-        books: state.books.concat([bookNovo]),
-      }));
+    updateShelf(book, shelf).then((updateBooks) => {
+      this.setState(({ books }) => ({ books: updateBooks(books) }));
     });
   };
 
@@ -36,10 +30,11 @@ class BooksApp extends Component {
           exact
           path="/"
           render={() => (
-            <ListBooks
+            <MyReadsPage
               books={this.state.books}
-              optionsMove={this.state.optionsMove}
+              shelves={this.state.shelves}
               onUpdateBook={this.changeShelf}
+              loading={this.state.loading}
             />
           )}
         />

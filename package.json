@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd": "^3.3.1",
     "babel-eslint": "^7.2.3",
     "escape-string-regexp": "^1.0.5",
     "prettier": "^1.11.1",
