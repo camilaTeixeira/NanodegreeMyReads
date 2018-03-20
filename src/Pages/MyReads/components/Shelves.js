@@ -7,9 +7,6 @@ import Shelf from './Shelf';
 const Shelves = ({
   books, shelves, onUpdateBook, loading,
 }) => {
-  if (loading) {
-    return <div className="loading">Loading</div>;
-  }
   const filterShelf = shelfName => book => book.shelf === shelfName;
   const shelvesWithoutNone = shelves.filter(shelf => shelf.id !== 'none');
   return (

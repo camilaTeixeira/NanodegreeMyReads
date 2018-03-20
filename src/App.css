@@ -81,6 +81,7 @@ body,
 .search-books-input-wrapper {
   flex: 1;
   background: #9933ff;
+
 }
 .search-books-bar input {
   width: 100%;
@@ -88,6 +89,7 @@ body,
   font-size: 1.25em;
   border: none;
   outline: none;
+  
 }
 
 .close-search {
@@ -102,6 +104,7 @@ body,
   background-repeat: no-repeat;
   background-size: 28px;
   font-size: 0;
+  outline-color: #551A8B;
 }
 
 .search-books-results {
