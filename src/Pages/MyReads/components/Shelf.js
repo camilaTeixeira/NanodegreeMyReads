@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Divider } from 'antd';
+<<<<<<< HEAD
 import Book from '../../../components/Book/index'
+=======
+import Book from '../../../components/Book/index';
+>>>>>>> e1b46ae096f3b7fafadbec58aa9095a84931ac89
 
 const Shelf = ({ shelf, books, onUpdateBook }) => (
   <div>
