@@ -11,4 +11,3 @@ export const updateShelf = (book, shelf) =>
       shelf,
     }),
   );
-
