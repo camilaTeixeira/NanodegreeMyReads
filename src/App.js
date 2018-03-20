@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
-import SearchBook from './SearchBook';
+import SearchBook from './Pages/Search';
 import MyReadsPage from './Pages/MyReads/';
 import { getAll as getAllShelves } from './data/Shelves';
 import { getAll as getAllBooks, updateShelf } from './data/Books';

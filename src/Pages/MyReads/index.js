@@ -1,9 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Shelves from './components/Shelves';
 
-const MyReads = ({ books, shelves, onUpdateBook, loading }) => (
+const MyReads = ({
+  books, shelves, onUpdateBook, loading,
+}) => (
   <div className="list-books">
     <div className="list-books-title">
       <h1>MyReads ✔</h1>

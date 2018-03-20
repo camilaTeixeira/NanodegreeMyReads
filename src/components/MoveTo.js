@@ -1,27 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Menu, Dropdown, Button } from 'antd';
 import { SHELVES } from '../data/Shelves';
 
-const MoveTo = props => {
+const MoveTo = (props) => {
   const { onUpdateBook, book } = props;
 
-  const options = (
-    <Menu onClick={({ key }) => onUpdateBook(book, key)}>
-      {SHELVES.map(shelf => (
-        <Menu.Item key={shelf.id}>
-          {shelf.id === book.shelf ? '✔' : '  '}
-          {shelf.label}
-        </Menu.Item>
-      ))}
-    </Menu>
-  );
+  const options = SHELVES.map(shelf => (
+    <option key={shelf.id} value={shelf.id}>
+      {shelf.id === book.shelf ? '✔' : '  '}
+      {shelf.label}
+    </option>
+  ));
 
   return (
     <div className="book-shelf-changer">
-      <Dropdown overlay={options} placement="bottomLeft">
-        <Button type="primary" shape="circle" icon="caret-down" />
-      </Dropdown>
+      <select
+        defaultValue={book.shelf}
+        onChange={event => onUpdateBook(book, event.target.value)}
+      >
+        <option value="none" disabled>
+          Move to...
+        </option>
+        {options}
+      </select>
     </div>
   );
 };
