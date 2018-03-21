@@ -25,6 +25,6 @@ $ npm --version
 
 ## Authors
 
-* **camilaTeixeira** - *Initial work* - [Camila Teixeira](https://github.com//camilaTeixeira
+* **camilaTeixeira** - *Initial work* - [Camila Teixeira](https://github.com//camilaTeixeira)
 
 
