@@ -6,10 +6,13 @@ Permite também buscar outros livros para adicionar a sua estante.
 ## Getting Started
 
 - [ ] Clone este repositório 
+
       ``` $ git clone [git-repo-url] ```
 - [ ] Instale as dependências do projeto
+
       ``` $ npm install```
 - [ ] Inicie o servidor
+
       ``` $ npm start ```
 ### Prerequisites
 
@@ -22,6 +25,6 @@ $ npm --version
 
 ## Authors
 
-* **/camilaTeixeira** - *Initial work* - [Camila Teixeira](https://github.com//camilaTeixeira
+* **camilaTeixeira** - *Initial work* - [Camila Teixeira](https://github.com//camilaTeixeira
 
 
