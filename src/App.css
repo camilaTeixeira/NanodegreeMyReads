@@ -131,3 +131,8 @@ body,
   width: 100px;
   margin: 0px auto;
 }
+
+.ant-btn-circle{
+  background-color: #9933ff !important;
+  border-color: #9933ff !important;
+}

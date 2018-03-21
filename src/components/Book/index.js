@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Spin } from 'antd';
 import MoveTo from '../MoveTo';
-import Loading from './Loading';
 import './style.css';
 
 class Book extends Component {

@@ -16,7 +16,7 @@ const Shelf = ({ shelf, books, onUpdateBook }) => (
         </ol>
       </div>
     </div>
-  </div> 
+  </div>
 );
 
 Shelf.propTypes = {

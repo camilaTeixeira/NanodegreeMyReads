@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { search as searchBook, AddShelf } from '../../data/Books';
-import Library from './components/Library';
+import SearchBar from './components/SearchBar';
+import Results from './components/Results';
+
 
 class SearchBooks extends Component {
   state = {
@@ -12,7 +13,7 @@ class SearchBooks extends Component {
 
   SearchBook = (query) => {
     this.setState({ query: query.trim(), loading: true });
-    searchBook(query).then((books) => {
+    searchBook(query, 10).then((books) => {
       this.setState({ books, loading: false });
     });
   };
@@ -22,32 +23,24 @@ class SearchBooks extends Component {
 
   render() {
     return (
-      <div className="search-books-results">
-        <div className="search-books">
-          <div className="search-books-bar">
-            <Link className="close-search" to="/">
-              Close
-            </Link>
-            <div className="search-books-input-wrapper">
-              <input
-                type="text"
-                placeholder="Search by title or author"
-                value={this.state.query}
-                onChange={event => this.SearchBook(event.target.value)}
-              />
-            </div>
-          </div>
+      <div>
+        <div className="search-books-results">
+          <SearchBar
+            query={this.state.query}
+            onSearchBook={this.SearchBook}
+          />
         </div>
-        <div className="list-books">
-          <Library
-            books={this.state.books}
+        <div className="list-books">        
+          <Results
+            books={this.state.books} 
+            onUpdateBook={this.SearchBook}
             loading={this.state.loading}
-            onUpdateBook={this.changeShelf}
           />
         </div>
       </div>
     );
   }
 }
+
 
 export default SearchBooks;
