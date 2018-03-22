@@ -12,7 +12,7 @@ const Library = ({ books, onUpdateBook, loading }) => (
         ))}
       </ol>
     </div>
-    </Spin>);
+  </Spin>);
 
 Library.propTypes = {
   books: PropTypes.array.isRequired,
