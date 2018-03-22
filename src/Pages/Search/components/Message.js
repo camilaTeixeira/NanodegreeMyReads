@@ -5,9 +5,9 @@ import { Alert } from 'antd';
 const Message = () => (
   <div>
     <Alert
-      message="Error"
-      description="Nenhm resultado econtrado"
-      type="error"
+      description="Nenhm resultado econtrado!"
+      type="warning"
+      showIcon
     />
   </div>
 );

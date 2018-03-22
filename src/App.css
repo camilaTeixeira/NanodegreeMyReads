@@ -137,7 +137,7 @@ body,
   border-color: #9933ff !important;
 }
 
-.ant-alert-with-description.ant-alert-no-icon{
-  width: 40%;
+.ant-alert-with-description{
+  width: 30%;
   margin-left:10px;
 }

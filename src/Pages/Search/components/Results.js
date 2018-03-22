@@ -5,7 +5,6 @@ import Message from './Message';
 
 const Results = ({ books, onUpdateBook, loading }) => {
   const isBooksArray = Array.isArray(books);
-
   if (isBooksArray) {
     return (
       <div className="list-books">

@@ -12,4 +12,8 @@ export const updateShelf = (book, shelf) =>
       shelf,
     }));
 
-export const AddShelf = (book, shelf) => updateBook(book, shelf);
+export const AddShelf = (book, shelf) =>
+  updateBook(book, shelf).then(() => books =>
+    books.filter(filterRemoveBook(book.id)).concat({
+      ...book,
+    }));

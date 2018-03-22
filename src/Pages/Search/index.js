@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { search as searchBook, AddShelf } from '../../data/Books';
+import { search as searchBook, AddShelf, getAll as getAllBooks } from '../../data/Books';
 import SearchBar from './components/SearchBar';
 import Results from './components/Results';
 
@@ -9,16 +9,28 @@ class SearchBooks extends Component {
     query: '',
     books: [],
     loading: false,
+    bookMyShelf: [],
   };
+  componentDidMount() {
+    getAllBooks().then((bookMyShelf) => {
+      this.setState(bookMyShelf);
+    });
+  }
 
   SearchBook = (query) => {
-    this.setState({ query: query.trim(), loading: true });
-    searchBook(query, 10).then((books) => {
-      this.setState({ books, loading: false });
-    });
+    if (query.length > 0) {
+      this.setState({ query: query.trim(), loading: true });
+      searchBook(query, 10).then((books) => {
+        this.setState({ books, loading: false });
+      });
+    } else {
+      this.setState({ books: [], query: '', loading: false });
+    }
   };
   changeShelf = (book, shelf) => {
-    AddShelf(book, shelf);
+    AddShelf(book, shelf).then((books) => {
+      this.setState({ books, loading: false });
+    });
   };
 
   render() {
@@ -30,10 +42,10 @@ class SearchBooks extends Component {
             onSearchBook={this.SearchBook}
           />
         </div>
-        <div className="list-books">        
+        <div className="list-books">
           <Results
-            books={this.state.books} 
-            onUpdateBook={this.SearchBook}
+            books={this.state.books}
+            onUpdateBook={this.changeShelf}
             loading={this.state.loading}
           />
         </div>
