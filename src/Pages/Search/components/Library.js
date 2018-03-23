@@ -4,6 +4,8 @@ import { Spin } from 'antd';
 import Book from '../../../components/Book/index';
 
 const Library = ({ books, onUpdateBook, loading }) => (
+
+
   <Spin spinning={loading}>
     <div className="bookshelf-books">
       <ol className="books-grid">

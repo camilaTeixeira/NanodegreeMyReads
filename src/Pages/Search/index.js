@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
-import { search as searchBook, AddShelf, getAll as getAllBooks } from '../../data/Books';
+import PropTypes from 'prop-types';
+import { search as searchBook, AddShelf } from '../../data/Books';
 import SearchBar from './components/SearchBar';
 import Results from './components/Results';
 
 
 class SearchBooks extends Component {
+  static propTypes = {
+    SelectedBooks: PropTypes.array.isRequired,
+  }
+
   state = {
     query: '',
     books: [],
     loading: false,
-    bookMyShelf: [],
   };
-  componentDidMount() {
-    getAllBooks().then((bookMyShelf) => {
-      this.setState(bookMyShelf);
-    });
-  }
-
   SearchBook = (query) => {
     if (query.length > 0) {
       this.setState({ query: query.trim(), loading: true });
@@ -27,13 +25,14 @@ class SearchBooks extends Component {
       this.setState({ books: [], query: '', loading: false });
     }
   };
-  changeShelf = (book, shelf) => {
-    AddShelf(book, shelf).then((books) => {
+  changeShelf = (book, shelf, query) => {
+    AddShelf(book, shelf, query).then((books) => {
       this.setState({ books, loading: false });
     });
   };
 
   render() {
+    const { SelectedBooks } = this.props;
     return (
       <div>
         <div className="search-books-results">
@@ -47,12 +46,12 @@ class SearchBooks extends Component {
             books={this.state.books}
             onUpdateBook={this.changeShelf}
             loading={this.state.loading}
+            SelectedBooks={SelectedBooks}
           />
         </div>
       </div>
     );
   }
 }
-
 
 export default SearchBooks;
