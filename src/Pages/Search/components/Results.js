@@ -5,14 +5,14 @@ import Message from './Message';
 import { isBooksArray } from '../../../data/Books';
 
 const Results = ({
-  books, onUpdateBook, loading, SelectedBooks,
+  books, onUpdateBook, loading, SelectedBooks, shelves,
 }) => {
   if (isBooksArray(books)) {
     const SelectedIds = SelectedBooks.map(book => book.id);
     const BooksWithoutShelf = books.filter(book => !SelectedIds.includes(book.id));
     return (
       <div className="list-books">
-        <Library books={BooksWithoutShelf} loading={loading} onUpdateBook={onUpdateBook} />
+        <Library books={BooksWithoutShelf} loading={loading} onUpdateBook={onUpdateBook} shelves={shelves} />
       </div>
     );
   }

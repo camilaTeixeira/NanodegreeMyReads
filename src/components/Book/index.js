@@ -9,6 +9,7 @@ class Book extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
     onUpdateBook: PropTypes.func.isRequired,
+    shelves: PropTypes.array.isRequired,
   };
   state = {
     updating: false,
@@ -40,6 +41,7 @@ class Book extends Component {
                 shelf={book.shelf}
                 onUpdateBook={this.changeShelf}
                 book={book}
+                shelves={this.props.shelves}
               />
             </div>
             <div className="book-title">{book.title}</div>

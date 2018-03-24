@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import sortBy from 'sort-by';
 import { Spin } from 'antd';
 import Shelf from './Shelf';
+import { filterNone } from '../../../data/Shelves';
 
 const Shelves = ({
   books, shelves, onUpdateBook, loading,
 }) => {
   const filterShelf = shelfName => book => book.shelf === shelfName;
-  const shelvesWithoutNone = shelves.filter(shelf => shelf.id !== 'none');
+  const shelvesWithoutNone = filterNone(shelves);
   return (
     <Spin spinning={loading}>
       <div className="list-books-content">
@@ -18,6 +19,7 @@ const Shelves = ({
             shelf={shelf}
             onUpdateBook={onUpdateBook}
             books={books.filter(filterShelf(shelf.id)).sort(sortBy('title'))}
+            shelves={shelves}
           />
         ))}
       </div>

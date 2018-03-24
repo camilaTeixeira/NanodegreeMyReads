@@ -8,6 +8,7 @@ class SearchBooks extends Component {
   static propTypes = {
     SelectedBooks: PropTypes.array.isRequired,
     reloadMyReads: PropTypes.func.isRequired,
+    shelves: PropTypes.array.isRequired,
   };
 
   state = {
@@ -48,6 +49,7 @@ class SearchBooks extends Component {
             onUpdateBook={this.changeShelf}
             loading={this.state.loading}
             SelectedBooks={SelectedBooks}
+            shelves={this.props.shelves}
           />
         </div>
       </div>
