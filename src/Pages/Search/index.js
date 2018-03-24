@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { search as searchBook, AddShelf } from '../../data/Books';
+import { search as searchBook, updateShelf } from '../../data/Books';
 import SearchBar from './components/SearchBar';
 import Results from './components/Results';
-
 
 class SearchBooks extends Component {
   static propTypes = {
     SelectedBooks: PropTypes.array.isRequired,
-  }
+    reloadMyReads: PropTypes.func.isRequired,
+  };
 
   state = {
     query: '',
@@ -25,18 +25,19 @@ class SearchBooks extends Component {
       this.setState({ books: [], query: '', loading: false });
     }
   };
-  changeShelf = (book, shelf, query) => {
-    AddShelf(book, shelf, query).then((books) => {
-      this.setState({ books, loading: false });
+  changeShelf = (book, shelf) => {
+    updateShelf(book, shelf).then(({ deleteBookOf }) => {
+      this.setState(({ books }) => ({ books: deleteBookOf(books) }));
     });
   };
 
   render() {
-    const { SelectedBooks } = this.props;
+    const { SelectedBooks, reloadMyReads } = this.props;
     return (
       <div>
         <div className="search-books-results">
           <SearchBar
+            onBack={reloadMyReads}
             query={this.state.query}
             onSearchBook={this.SearchBook}
           />

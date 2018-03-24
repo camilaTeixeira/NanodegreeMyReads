@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Spin } from 'antd';
+import imgBookCoverNotAvailable from '../../icons/book-cover-not-available.png';
 import MoveTo from '../MoveTo';
 import './style.css';
 
@@ -21,6 +22,7 @@ class Book extends Component {
 
   render() {
     const { book } = this.props;
+    const thumbnail = (book.imageLinks && book.imageLinks.thumbnail) || imgBookCoverNotAvailable;
     return (
       <li style={{ position: 'relative' }} key={book.id}>
         <Spin spinning={this.state.updating}>
@@ -31,7 +33,7 @@ class Book extends Component {
                 style={{
                   width: 128,
                   height: 193,
-                  backgroundImage: `url(${book.imageLinks.thumbnail})`,
+                  backgroundImage: `url(${thumbnail})`,
                 }}
               />
               <MoveTo

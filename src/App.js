@@ -17,9 +17,14 @@ class BooksApp extends Component {
       this.setState({ books, shelves, loading: false });
     });
   }
+
+  reloadBooks = () => {
+    this.setState({ loading: true });
+    getAllBooks().then(books => this.setState({ books, loading: false }));
+  };
   changeShelf = (book, shelf) => {
-    updateShelf(book, shelf).then((updateBooks) => {
-      this.setState(({ books }) => ({ books: updateBooks(books) }));
+    updateShelf(book, shelf).then(({ updateBookOf }) => {
+      this.setState(({ books }) => ({ books: updateBookOf(books) }));
     });
   };
 
@@ -38,7 +43,12 @@ class BooksApp extends Component {
             />
           )}
         />
-        <Route path="/search" render={() => <SearchBooks SelectedBooks={this.state.books} />} />
+        <Route
+          path="/search"
+          render={() => (
+            <SearchBooks reloadMyReads={this.reloadBooks} SelectedBooks={this.state.books} />
+          )}
+        />
       </div>
     );
   }
