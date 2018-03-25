@@ -12,7 +12,12 @@ const Results = ({
     const BooksWithoutShelf = books.filter(book => !SelectedIds.includes(book.id));
     return (
       <div className="list-books">
-        <Library books={BooksWithoutShelf} loading={loading} onUpdateBook={onUpdateBook} shelves={shelves} />
+        <Library
+          books={BooksWithoutShelf}
+          loading={loading}
+          onUpdateBook={onUpdateBook}
+          shelves={shelves}
+        />
       </div>
     );
   }
@@ -20,13 +25,11 @@ const Results = ({
 };
 
 Results.propTypes = {
-  books: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-  ]).isRequired,
+  books: PropTypes.any.isRequired,
   onUpdateBook: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   SelectedBooks: PropTypes.array.isRequired,
+  shelves: PropTypes.array.isRequired,
 };
 
 export default Results;

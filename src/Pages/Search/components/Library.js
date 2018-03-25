@@ -26,7 +26,10 @@ const Library = ({
 };
 
 Library.propTypes = {
-  books: PropTypes.array.isRequired,
+  books: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]).isRequired,
   onUpdateBook: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   shelves: PropTypes.array.isRequired,
