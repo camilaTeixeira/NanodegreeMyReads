@@ -16,9 +16,9 @@ class SearchBooks extends Component {
     books: [],
     loading: false,
   };
-  SearchBook = (query) => {
+  SearchBook = (query) => {   
     if (query.length > 0) {
-      this.setState({ query: query.trim(), loading: true });
+      this.setState({ query, loading: true });
       searchBook(query, 10).then((books) => {
         this.setState({ books, loading: false });
       });

@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { DebounceInput } from 'react-debounce-input';
 
 const SearchInput = ({ query, onSearchBook }) => (
   <div className="search-books-input-wrapper">
-    <input
+    <DebounceInput
+      debounceTimeout={300}
       type="text"
       placeholder="Search by title or author"
       value={query}

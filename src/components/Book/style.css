@@ -1,5 +1,6 @@
 .book {
   width: 140px;
+  align-content: center;
 }
 .book-title,
 .book-authors {
@@ -46,3 +47,30 @@
   text-align: center;
   font-size: 0.8em;
 }
+.book-detail {
+  padding-top: 10px;
+  text-align: center;
+  width: 100%;
+}
+.onMouseEnterBook {
+  opacity: 0.5;
+  cursor: pointer;
+  }
+
+  .ant-btn-primary {
+    visibility: visible !important;
+    background-color: #9933ff;
+    border-color: #9933ff;
+  }
+  
+  .ant-btn {
+    visibility: hidden;
+  }
+
+  .description{
+    padding-top: 20px;
+    text-align: justify;
+  }
+  .ant-rate ant-rate-disabled{
+    padding-bottom: 30px;
+  }
