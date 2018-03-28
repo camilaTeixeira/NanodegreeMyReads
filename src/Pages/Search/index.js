@@ -27,8 +27,8 @@ class SearchBooks extends Component {
     }
   };
   changeShelf = (book, shelf) => {
-    updateShelf(book, shelf).then(({ updateBookOf }) => {
-      this.setState(({ books }) => ({ books: updateBookOf(books) }));
+    updateShelf(book, shelf).then(({ deleteBookOf }) => {
+      this.setState(({ books }) => ({ books: deleteBookOf(books) }));
     });
   };
 
