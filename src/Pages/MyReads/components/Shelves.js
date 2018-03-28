@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import sortBy from 'sort-by';
 import { Spin } from 'antd';
 import Shelf from './Shelf';
-import { filterNone } from '../../../data/Shelves';
+import { SHELVES } from '../../../data/Shelves';
 
 const Shelves = ({
-  books, shelves, onUpdateBook, loading,
+  books, onUpdateBook, loading,
 }) => {
   const filterShelf = shelfName => book => book.shelf === shelfName;
-  const shelvesWithoutNone = filterNone(shelves);
+  const shelvesWithoutNone = SHELVES.filter(shelf => shelf.id !== 'none');
   return (
     <Spin spinning={loading}>
       <div className="list-books-content">
@@ -19,7 +19,6 @@ const Shelves = ({
             shelf={shelf}
             onUpdateBook={onUpdateBook}
             books={books.filter(filterShelf(shelf.id)).sort(sortBy('title'))}
-            shelves={shelves}
           />
         ))}
       </div>
@@ -29,7 +28,6 @@ const Shelves = ({
 
 Shelves.propTypes = {
   books: PropTypes.array.isRequired,
-  shelves: PropTypes.array.isRequired,
   onUpdateBook: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };

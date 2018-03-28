@@ -16,7 +16,7 @@ class SearchBooks extends Component {
     books: [],
     loading: false,
   };
-  SearchBook = (query) => {   
+  SearchBook = (query) => {
     if (query.length > 0) {
       this.setState({ query, loading: true });
       searchBook(query, 10).then((books) => {
@@ -27,8 +27,8 @@ class SearchBooks extends Component {
     }
   };
   changeShelf = (book, shelf) => {
-    updateShelf(book, shelf).then(({ deleteBookOf }) => {
-      this.setState(({ books }) => ({ books: deleteBookOf(books) }));
+    updateShelf(book, shelf).then(({ updateBookOf }) => {
+      this.setState(({ books }) => ({ books: updateBookOf(books) }));
     });
   };
 

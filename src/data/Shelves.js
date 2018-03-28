@@ -6,6 +6,5 @@ export const SHELVES = [
   { id: 'none', label: 'None' },
 ];
 
-export const filterNone = shelves => shelves.filter(shelf => shelf.id !== 'none');
 export const getAll = () => new Promise(resolve => resolve(SHELVES));
 

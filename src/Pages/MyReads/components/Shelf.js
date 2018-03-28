@@ -4,7 +4,7 @@ import { Divider } from 'antd';
 import Book from '../../../components/Book/index';
 
 const Shelf = ({
-  shelf, books, onUpdateBook, shelves,
+  shelf, books, onUpdateBook,
 }) => (
   <div>
     <div className="bookshelf">
@@ -17,7 +17,6 @@ const Shelf = ({
               key={book.id}
               book={book}
               onUpdateBook={onUpdateBook}
-              shelves={shelves}
             />
           ))}
         </ol>
@@ -30,7 +29,6 @@ Shelf.propTypes = {
   shelf: PropTypes.object.isRequired,
   books: PropTypes.array.isRequired,
   onUpdateBook: PropTypes.func.isRequired,
-  shelves: PropTypes.array.isRequired,
 };
 
 export default Shelf;

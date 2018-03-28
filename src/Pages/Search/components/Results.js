@@ -5,18 +5,26 @@ import Message from './Message';
 import { isBooksArray } from '../../../data/Books';
 
 const Results = ({
-  books, onUpdateBook, loading, SelectedBooks, shelves,
+  books, onUpdateBook, loading, SelectedBooks,
 }) => {
   if (isBooksArray(books)) {
     const SelectedIds = SelectedBooks.map(book => book.id);
-    const BooksWithoutShelf = books.filter(book => !SelectedIds.includes(book.id));
+    const BooksWithShelf = books.map((book) => {
+      const index = SelectedIds.indexOf(book.id);
+      if (index > -1) {
+        return {
+          ...book,
+          shelf: SelectedBooks[index].shelf,
+        };
+      }
+      return book;
+    });
     return (
       <div className="list-books">
         <Library
-          books={BooksWithoutShelf}
+          books={BooksWithShelf}
           loading={loading}
           onUpdateBook={onUpdateBook}
-          shelves={shelves}
         />
       </div>
     );
@@ -29,7 +37,6 @@ Results.propTypes = {
   onUpdateBook: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   SelectedBooks: PropTypes.array.isRequired,
-  shelves: PropTypes.array.isRequired,
 };
 
 export default Results;
