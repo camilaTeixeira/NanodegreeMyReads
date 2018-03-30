@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { Menu, Dropdown, Button } from 'antd';
 import { SHELVES } from '../data/Shelves';
 
-const MoveTo = (props) => {
-  const { onUpdateBook, book } = props;
-
+const MoveTo = ({ onUpdateBook, book }) => {
   const options = (
     <Menu onClick={({ key }) => onUpdateBook(book, key)}>
       {SHELVES.map(shelf => (

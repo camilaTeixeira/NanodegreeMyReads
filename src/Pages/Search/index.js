@@ -8,7 +8,6 @@ class SearchBooks extends Component {
   static propTypes = {
     SelectedBooks: PropTypes.array.isRequired,
     reloadMyReads: PropTypes.func.isRequired,
-    shelves: PropTypes.array.isRequired,
   };
 
   state = {
@@ -27,11 +26,11 @@ class SearchBooks extends Component {
     }
   };
   changeShelf = (book, shelf) => {
-    updateShelf(book, shelf).then(({ deleteBookOf }) => {
-      this.setState(({ books }) => ({ books: deleteBookOf(books) }));
+    this.setState({ loading: true });
+    updateShelf(book, shelf).then((books) => {
+      this.setState({ books, loading: false });
     });
   };
-
   render() {
     const { SelectedBooks, reloadMyReads } = this.props;
     return (
@@ -49,7 +48,6 @@ class SearchBooks extends Component {
             onUpdateBook={this.changeShelf}
             loading={this.state.loading}
             SelectedBooks={SelectedBooks}
-            shelves={this.props.shelves}
           />
         </div>
       </div>
