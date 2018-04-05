@@ -22,9 +22,15 @@ class BooksApp extends Component {
     this.setState({ loading: true });
     getAllBooks().then(books => this.setState({ books, loading: false }));
   };
+
   changeShelf = (book, shelf) => {
-    updateShelf(book, shelf).then((books) => {
-      this.setState({ books, loading: false });
+    this.setState({ loading: true });
+
+    return updateShelf(book, shelf).then((updateBooks) => {
+      this.setState(({ books }) => ({
+        books: updateBooks(books),
+        loading: false,
+      }));
     });
   };
 

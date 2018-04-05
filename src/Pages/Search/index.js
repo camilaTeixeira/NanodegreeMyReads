@@ -14,6 +14,7 @@ class SearchBooks extends Component {
     query: '',
     books: [],
     loading: false,
+    SelectedBooks: this.props.SelectedBooks,
   };
   SearchBook = (query) => {
     if (query.length > 0) {
@@ -27,12 +28,18 @@ class SearchBooks extends Component {
   };
   changeShelf = (book, shelf) => {
     this.setState({ loading: true });
-    updateShelf(book, shelf).then((books) => {
-      this.setState({ books, loading: false });
+
+    return updateShelf(book, shelf).then((updateBooks) => {
+      this.setState(({ books, SelectedBooks }) => ({
+        books: updateBooks(books),
+        SelectedBooks: updateBooks(SelectedBooks),
+        loading: false,
+      }));
     });
   };
   render() {
-    const { SelectedBooks, reloadMyReads } = this.props;
+    const { reloadMyReads } = this.props;
+    const { SelectedBooks } = this.state;
     return (
       <div>
         <div className="search-books-results">
@@ -45,6 +52,7 @@ class SearchBooks extends Component {
         <div className="list-books">
           <Results
             books={this.state.books}
+            query={this.state.query}
             onUpdateBook={this.changeShelf}
             loading={this.state.loading}
             SelectedBooks={SelectedBooks}
